@@ -1,0 +1,29 @@
+{
+  "name": "bank-api",
+  "version": "1.0.0",
+  "description": "backend project for banking application",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KartikLakhotiya/Bank-API.git"
+  },
+  "author": "Kartik Lakhotiya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KartikLakhotiya/Bank-API/issues"
+  },
+  "homepage": "https://github.com/KartikLakhotiya/Bank-API#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "mongoose": "^8.6.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0"
+  }
+}

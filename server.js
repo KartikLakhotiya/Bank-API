@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import connectDB from './config/MongoDB.js';
 import userRoutes from './routes/users.routes.js';
 import accountRoutes from './routes/accounts.routes.js';
+import transactionRoutes from './routes/transactions.routes.js';
+
 dotenv.config();
 
 const app = express();
@@ -21,7 +23,8 @@ app.get('/', (req, res) => {
 
 // api routes
 app.use('/api/users', userRoutes);
-app.use('/api/accounts',accountRoutes);
+app.use('/api/accounts', accountRoutes);
+app.use('/api/transactions', transactionRoutes);
 
 
 app.listen(PORT, () => {

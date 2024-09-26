@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/KartikLakhotiya/Bank-API#readme",
   "dependencies": {
+    "bank-api": "file:",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "mongoose": "^8.6.3"

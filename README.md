@@ -18,6 +18,7 @@ A backend project made with NodeJS, ExpressJS and MongoDB to create backend APIs
 - **Node.js**: JavaScript runtime for server-side logic
 - **Express.js**: Web framework for Node.js
 - **MongoDB**: NoSQL database for storing user, accounts and transactions data
+- **Postman**: To send API request.
 
 ## Prerequisites
 
@@ -25,6 +26,7 @@ Before you begin, ensure you have met the following requirements:
 
 - Node.js and npm installed. (Download from [Node.js](https://nodejs.org/))
 - MongoDB installed and running. (Follow [MongoDB Installation Guide](https://docs.mongodb.com/manual/installation/))
+- Postman 
 
 ## Installation
 

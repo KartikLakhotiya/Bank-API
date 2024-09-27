@@ -6,6 +6,9 @@ const accountSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
+    firstName: {
+        type: String,
+    },
     balance: {
         type: Number,
         default: 0

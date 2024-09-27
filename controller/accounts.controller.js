@@ -1,14 +1,9 @@
 import Account from "../models/accounts.model.js";
 
-export const createAccount = async (userId) => {
+export const getAllAccounts = async (req, res) => {
     try {
-        const account = new Account({
-            userId,
-            balance: 0,
-            credit: 0
-        });
-        const savedAccount = await account.save();
-        return savedAccount;
+        const accounts = await Account.find();
+        res.status(200).json(accounts);
     }
     catch (error) {
         console.log(error);

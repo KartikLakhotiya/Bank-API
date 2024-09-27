@@ -1,5 +1,5 @@
 import User from "../models/users.model.js"
-import { createAccount } from "./accounts.controller.js";
+import { createAccount } from "../utils/createAccount.js";
 
 export const getAllUsers = async (req, res) => {
     try {
@@ -12,6 +12,7 @@ export const getAllUsers = async (req, res) => {
     }
 }
 
+
 export const createUser = async (req, res) => {
     const { firstName, lastName, email } = req.body;
     try {
@@ -21,7 +22,7 @@ export const createUser = async (req, res) => {
             email
         })
         const saveduser = await user.save();
-        const account = await createAccount(saveduser.id);
+        const account = await createAccount(saveduser.id, saveduser.firstName);
         saveduser.accountId = account;
         console.log(`User Created ${saveduser.firstName}`);
         await saveduser.save();

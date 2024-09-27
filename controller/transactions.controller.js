@@ -149,3 +149,17 @@ export const transferFunds = async (req, res) => {
     }
 
 }
+
+export const getUsersTransaction = async (req, res) => {
+    try {
+        const userId = req.params.userId;
+
+        // Get all transactions for the user
+        const transactions = await Transaction.find({ userId });
+
+        res.json({ transactions });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Something went wrong' });
+    }
+}

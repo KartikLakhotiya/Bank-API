@@ -13,6 +13,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    password: {
+        type: String,
+        required: true
+    },
     accountId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Account'

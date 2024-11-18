@@ -20,11 +20,15 @@
   "homepage": "https://github.com/KartikLakhotiya/Bank-API#readme",
   "dependencies": {
     "bank-api": "file:",
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.6.3"
   },
   "devDependencies": {
-    "@types/express": "^5.0.0"
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.7"
   }
 }

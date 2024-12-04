@@ -1,6 +1,7 @@
 import { createTransaction } from "../utils/createTrasaction.js";
 import Account from "../models/accounts.model.js";
 import Transaction from "../models/transactions.model.js";
+import User from "../models/users.model.js";
 
 export const depositCash = async (req, res) => {
     try {
@@ -19,6 +20,8 @@ export const depositCash = async (req, res) => {
             return res.status(404).json({ message: "Account Not Found" });
         }
 
+        const user = await User.findById(userId);
+
         const transaction = new Transaction({
             type: 'deposit',
             amount,
@@ -29,6 +32,7 @@ export const depositCash = async (req, res) => {
         await account.save();
 
         res.status(200).json({ message: "Amount deposited successfully", account });
+        console.log(`Amount : ${amount} deposited in User ${user.firstName} Account.`);
     }
     catch (error) {
         console.log(error);
@@ -56,6 +60,8 @@ export const withdraw = async (req, res) => {
             { new: true }
         )
 
+        const user = await User.findById(userId);
+
         const transaction = new Transaction({
             type: 'withdrawal',
             amount,
@@ -66,6 +72,7 @@ export const withdraw = async (req, res) => {
         await account.save();
 
         res.status(200).json({ message: 'Cash withdrawn successfully', account: updatedAccount });
+        console.log(`Amount : ${amount} withdrawn successfully from ${user.firstName} Account`);
     }
     catch (error) {
         console.log(error);
@@ -142,6 +149,8 @@ export const transferFunds = async (req, res) => {
             toAccount: toAccountId,
             amount
         });
+
+        console.log(`Transfer Completed Successfully from ID : ${fromAccountId} || TO : ${toAccountId} with Amount : ${amount}`);
     }
     catch (error) {
         console.log(error);

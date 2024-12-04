@@ -57,10 +57,10 @@ export const login = async (req, res) => {
         generateTokenAndSetCookie(res, user._id);
         user.lastLogin = new Date();
         await user.save();
-        console.log(`User ${user.name} logged in.`)
+        console.log(`User ${user.firstName} logged in.`)
         res.status(200).json({
             success: "true",
-            message: `User ${user.name} Logged in Successfully`,
+            message: `User ${user.firstName} Logged in Successfully`,
             user: {
                 ...user._doc,
                 password: undefined,
@@ -72,6 +72,18 @@ export const login = async (req, res) => {
         res.status(500).json({ message: error, success: false });
     }
 
+}
+
+export const logout = async (req, res) => {
+    const loggedInUser = await User.findById(req.userId).select("-password");
+    res.clearCookie("token", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: 'None',
+        path: '/'
+    })
+    console.log(`User ${loggedInUser.firstName} Logged Out`);
+    res.status(200).json({ success: true, message: `User ${loggedInUser.firstName}Logged out successfully.` });
 }
 
 export const getUserById = async (req, res) => {

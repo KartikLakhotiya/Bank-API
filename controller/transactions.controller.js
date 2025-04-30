@@ -150,7 +150,7 @@ export const transferFunds = async (req, res) => {
             amount
         });
 
-        console.log(`Transfer Completed Successfully from ID : ${fromAccountId} || TO : ${toAccountId} with Amount : ${amount}`);
+        console.log(`Transfer Completed Successfully from ID : ${fromAccountId} || to ID : ${toAccountId} , Amount : ${amount}`);
     }
     catch (error) {
         console.log(error);

@@ -2,6 +2,7 @@ import User from "../models/users.model.js"
 import bcrypt from 'bcrypt';
 import { createAccount } from "../utils/createAccount.js";
 import { generateTokenAndSetCookie } from "../utils/generateTokenAndSetCookies.js";
+import Account from "../models/accounts.model.js";
 
 export const getAllUsers = async (req, res) => {
     try {
@@ -55,6 +56,8 @@ export const login = async (req, res) => {
             return res.status(400).json({ message: "Invalid Credentials" });
         }
         generateTokenAndSetCookie(res, user._id);
+        // console.log(user.accountId);
+        const account = await Account.findOne(user.accountId);
         user.lastLogin = new Date();
         await user.save();
         console.log(`User ${user.firstName} logged in.`)
@@ -64,7 +67,10 @@ export const login = async (req, res) => {
             user: {
                 ...user._doc,
                 password: undefined,
-            }
+                balance: account.balance,
+                lastLogin: user.lastLogin
+            },
+
         })
     }
     catch (error) {
@@ -97,5 +103,14 @@ export const getUserById = async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: error });
+    }
+}
+
+export const checkAuth = (req, res) => {
+    try {
+        res.status(200).json(req.user);
+    } catch (error) {
+        console.log("Error in check auth controller", error.message);
+        res.status(500).json({ message: "Internal Server Error" });
     }
 }

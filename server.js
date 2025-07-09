@@ -4,6 +4,7 @@ import connectDB from './config/MongoDB.js';
 import userRoutes from './routes/users.routes.js';
 import accountRoutes from './routes/accounts.routes.js';
 import transactionRoutes from './routes/transactions.routes.js';
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
 
@@ -15,8 +16,12 @@ const PORT = process.env.PORT || 5000
 
 // middlewares
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }))
-app.use(cors())
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true
+}))
 
 app.get('/', (req, res) => {
     res.send("Bank-API server is ready.")

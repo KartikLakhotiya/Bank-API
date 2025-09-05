@@ -3,6 +3,7 @@ import Account from "../models/accounts.model.js";
 export const getAllAccounts = async (req, res) => {
     try {
         const accounts = await Account.find();
+        console.log("getAllAccounts API called");
         res.status(200).json(accounts);
     }
     catch (error) {
@@ -18,6 +19,8 @@ export const getAccountById = async (req, res) => {
         if (!account) {
             return res.status(404).json({ message: "Account not found" });
         }
+        console.log(`getAccountById API called || Name : ${account.firstName} || Balance : ${account.balance}`);
+        console.log();
         res.status(200).json(account);
     } catch (error) {
         console.log(error);
@@ -38,7 +41,7 @@ export const checkBalance = async (req, res) => {
             balance: account.balance
         });
 
-        console.log(`Account Balance fetched for ${account.firstName} , Amount : ${account.balance}`);
+        console.log(`Account Balance fetched for ${account.firstName} || Amount : ${account.balance}`);
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: error });

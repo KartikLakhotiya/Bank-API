@@ -6,7 +6,8 @@ import Account from "../models/accounts.model.js";
 
 export const getAllUsers = async (req, res) => {
     try {
-        const users = await User.find();
+        const users = await User.find().select("-password");
+        console.log("Users API || getAllUsers API called");
         res.status(200).json(users);
     }
     catch (error) {
@@ -35,7 +36,7 @@ export const createUser = async (req, res) => {
 
         //jwt
 
-        console.log(`User Created ${saveduser.firstName}`);
+        console.log(`Users API || User Created ${saveduser.firstName}`);
         await saveduser.save();
         res.status(201).json(saveduser)
     }
@@ -60,7 +61,7 @@ export const login = async (req, res) => {
         const account = await Account.findOne(user.accountId);
         user.lastLogin = new Date();
         await user.save();
-        console.log(`User ${user.firstName} logged in.`)
+        console.log(`Users API || User ${user.firstName} logged in.`)
         res.status(200).json({
             success: "true",
             message: `User ${user.firstName} Logged in Successfully`,
@@ -88,8 +89,8 @@ export const logout = async (req, res) => {
         sameSite: 'None',
         path: '/'
     })
-    console.log(`User ${loggedInUser.firstName} Logged Out`);
-    res.status(200).json({ success: true, message: `User ${loggedInUser.firstName}Logged out successfully.` });
+    console.log(`Users API || User ${loggedInUser.firstName} Logged Out`);
+    res.status(200).json({ success: true, message: `Users API || User ${loggedInUser.firstName} Logged out successfully.` });
 }
 
 export const getUserById = async (req, res) => {

@@ -49,7 +49,7 @@ export const createUser = async (req, res) => {
         });
         
         await saveduser.save();
-        res.status(201).json(saveduser)
+        res.status(201).json({ ...saveduser._doc, password: undefined })
     }
     catch (error) {
         logger.error('UserController', 'Failed to create user', error);
